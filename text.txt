@@ -1,0 +1,44 @@
+Bank account application form
+
+-A-Personal Details
+-Full Name * (type : text , validation : must be alphabetic only , required)
+-date of birth* (type : DOB , validation : should be less than today’ s date , required)
+-gender* (type : radio , validation : select one of them, required)
+-maritail status * (type : dropdown , validation : select one of them  , required)
+-nationality*  (type : dropdown , validation : select one of them  , required)
+-Annual_Income* (type : number , validation : more than 10000, required)
+-occupation type  (type : dropdown , validation : not required)
+-person with disablity (dropdown)  (type : dropdown , validation : required)
+-Category (dropdown) (type : dropdown , validation : required)
+-Educational Qualifiaction (type : dropdown , validation : required)
+-Pan* (type : dropdown , validation : alphanumeric characters  required, max 10 digit number)
+-Account Type(dropdown)*  (type : dropdown , validation : required)
+
+
+-B-Contact Details
+
+-mobile* (type : number , validation : 10 digit must be number only , required)
+-email* (type : email : must be alphanumeric, email validation , required)
+
++Add more
+
+-C- Idendity proof
+
+-document type(dropdown)* (type : dropdown, validation :  required)
+-document number (type : number, validation :  required)
+-issue date (type : date, validation : not today,  required)
+-Exipiry date  (type : date, validation :future date,  required)
+-document Image   (type : file, validation :not > 5mb,  required)
+
+-D-Address Details
+
+-Address type (type : dropdown, validation : required)
+-Address* (type : textarea, validation :  required)
+-city/village* (type : text, validation :  required)
+-state* (type : dropdown, validation :  required) 
+-district* (type : text, validation :  required)
+-pin* (type : number, validation : not more than 6-digits  required)
+-country name* (type : dropdown, validation : only india  required)
+
+
+
