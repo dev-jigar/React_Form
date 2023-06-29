@@ -1,9 +1,7 @@
 import React from "react";
 
 const FormInputs = (props) => {
-  const ValidationSchema = {};
-
-  const { type, name, option, required, value } = props;
+  const { type, name, option, value, handleChange } = props;
   const Field = () => {
     switch (type) {
       case "number":
@@ -112,6 +110,7 @@ const FormInputs = (props) => {
               type="text"
               placeholder={`Enter ${name}`}
               value={value}
+              onChange={handleChange}
             />
           </>
         );

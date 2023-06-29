@@ -1,0 +1,24 @@
+table td {
+    padding: 30px;
+    font-size: larger;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: rgb(121, 121, 121);
+    color: rgb(65, 11, 11);
+    font-weight: 900;
+}
+table td {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+table {
+
+    border:5px solid brown;
+    border-collapse: collapse; 
+ }
+ tr .records{
+
+    background-color: #ffffff;
+ }

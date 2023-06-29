@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-
+import { makeRandomId } from "../../../utils/helpers";
 const Index = () => {
   const [formData, setFormData] = useState({
+    id: makeRandomId(10),
     currentStep: 1,
   });
-  console.log("🚀 ~ file: Index.js:11 ~ Index ~ formData:", formData);
   const handleChange = (event) => {
     setFormData({
       currentStep: formData?.currentStep + 1,
@@ -16,8 +16,9 @@ const Index = () => {
   };
   const [dynamicData, setDynamicData] = useState([
     {
-      email: "aa",
-      mobile: "234",
+      id: makeRandomId(10),
+      email: "",
+      mobile: "",
     },
   ]);
   const [idendityProof, setIdendityProof] = useState({
@@ -35,11 +36,31 @@ const Index = () => {
     setDynamicData([
       ...dynamicData,
       {
-        email: "bb",
-        mobile: "123",
+        id: makeRandomId(10),
+        email: "",
+        mobile: "",
       },
     ]);
   };
+  const handleDel = useCallback(
+    (e, id) => {
+      e.preventDefault();
+      if (id > -1) {
+        dynamicData.splice(id, 1);
+      }
+    },
+    [dynamicData, Step2]
+  );
+  const [Address, setAddress] = useState({
+    addType: "",
+    address: "",
+    district: "",
+    zip_Code: "",
+    address_location: "",
+    Country: "",
+    State: "",
+    City_Village: "",
+  });
 
   return (
     <div>
@@ -65,7 +86,6 @@ const Index = () => {
               setFormData={setFormData}
             />
           )}
-
           {formData?.currentStep === 3 && (
             <Step3
               currentStep={formData.currentStep}
@@ -82,6 +102,8 @@ const Index = () => {
               onSubmit={HandleSubmit}
               formData={formData}
               setFormData={setFormData}
+              Address={Address}
+              setAddress={setAddress}
             />
           )}
         </form>
@@ -89,5 +111,4 @@ const Index = () => {
     </div>
   );
 };
-
 export default Index;

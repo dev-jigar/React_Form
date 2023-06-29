@@ -73,3 +73,16 @@ export const states = [
 ];
 
 export const Country = ["India"];
+
+export const columns = [
+  "Name",
+  "email",
+  "Date of Birth",
+  "Account Type",
+  "Pan",
+  "Verified By",
+  "Phone",
+  "Created At",
+  "View",
+  "Delete",
+];
