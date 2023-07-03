@@ -1,33 +1,80 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { makeRandomId } from "../../../utils/helpers";
+import { getLocalStorage, makeRandomId } from "../../../utils/helpers";
 const Index = () => {
-  const [formData, setFormData] = useState({
-    id: makeRandomId(10),
-    currentStep: 1,
-  });
+  const [editForm, setEditForm] = useState(false);
+  const queryParams = new URLSearchParams(window.location.search);
+  const userId = queryParams.get("id");
+  const [editFormData, setEditFormData] = useState(null);
+
+  const [formData, setFormData] = useState();
+
+  useEffect(() => {
+    if (userId) {
+      setEditForm(true);
+      const editData = JSON.parse(getLocalStorage("BankUser"));
+      const index = editData.findIndex((item) => item.id === userId);
+      if (index >= 0) {
+        const allData = editData[index];
+        const tempStore = { ...allData };
+        setFormData({ ...allData, currentStep: 1, Edited: true });
+      }
+    } else {
+      setFormData({
+        id: makeRandomId(10),
+        currentStep: 1,
+      });
+    }
+  }, [userId]);
+
+  //form in filling up mode....
+
   const handleChange = (event) => {
     setFormData({
       currentStep: formData?.currentStep + 1,
     });
   };
-  const [dynamicData, setDynamicData] = useState([
-    {
-      id: makeRandomId(10),
-      email: "",
-      mobile: "",
-    },
-  ]);
-  const [idendityProof, setIdendityProof] = useState({
-    document_type: "",
-    document_no: "",
-    doc_image: "",
-    doc_issue_date: "",
-    doc_exipiry_date: "",
-  });
+
+  const arr = Object.entries(
+    formData?.Contact_Details ? formData?.Contact_Details : {}
+  ).reduce((result, [key, value]) => {
+    result[key] = value;
+    return result;
+  }, []);
+
+  useEffect(() => {
+    if (formData?.Contact_Details) {
+      return setDynamicData(arr);
+    } else {
+      setDynamicData([
+        {
+          id: makeRandomId(10),
+          email: "",
+          mobile: "",
+        },
+      ]);
+    }
+  }, [formData]);
+
+  const [dynamicData, setDynamicData] = useState();
+  useEffect(() => {
+    if (formData?.Idendity_Proof) {
+      return setIdendityProof({ ...formData?.Idendity_Proof });
+    } else {
+      setIdendityProof({
+        document_type: "Passport",
+        document_no: "234234234",
+        doc_image: "C:\\fakepath\\category-icon.png",
+        doc_issue_date: "2022-11-11",
+        doc_exipiry_date: "2023-06-16",
+      });
+    }
+  }, [formData]);
+
+  const [idendityProof, setIdendityProof] = useState();
   const HandleSubmit = (event) => {
     console.log("okay");
   };
@@ -37,8 +84,8 @@ const Index = () => {
       ...dynamicData,
       {
         id: makeRandomId(10),
-        email: "",
-        mobile: "",
+        email: "jigar.joshi011@gmail.com",
+        mobile: "80654544787",
       },
     ]);
   };
@@ -51,16 +98,23 @@ const Index = () => {
     },
     [dynamicData, Step2]
   );
-  const [Address, setAddress] = useState({
-    addType: "",
-    address: "",
-    district: "",
-    zip_Code: "",
-    address_location: "",
-    Country: "",
-    State: "",
-    City_Village: "",
-  });
+  useEffect(() => {
+    if (formData?.Address) {
+      return setAddress({ ...formData?.Address });
+    } else {
+      setAddress({
+        addType: "Registered Office",
+        address: "abc",
+        district: "abc",
+        zip_Code: "23234234",
+        address_location: "Permanent",
+        Country: "india",
+        State: "Goa",
+        City_Village: "adc",
+      });
+    }
+  }, [formData]);
+  const [Address, setAddress] = useState();
 
   return (
     <div>

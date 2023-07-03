@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Search from "../search/Search";
-const TableComponent = ({ data, title, columns }) => {
-  const handleDeleteUser = (e, id) => {
-    console.log("🚀 ~ file: Table.component.jsx:6 ~ TableComponent ~ id:", id);
+import { setLocalStoreage } from "../../utils/helpers";
+import { Link } from "react-router-dom";
+import Pagination from "../pagination/Pagination";
+const TableComponent = ({ data, title, columns, sort, localkey }) => {
+  const [tabledata, setTableData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(1);
+  const handleDeleteUser = (id) => {
+    const index = tabledata.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      tabledata.splice(index, 1);
+      const setUpdatedData = setLocalStoreage("BankUser", tabledata);
+      setTableData(setUpdatedData);
+    }
   };
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <div className="my-5">Groupby</div>
@@ -25,6 +40,8 @@ const TableComponent = ({ data, title, columns }) => {
                     <span>{col}</span>
                   </td>
                 ))}
+                <td>View</td>
+                <td>Delete</td>
               </tr>
 
               {data?.map((d, i) => (
@@ -39,16 +56,16 @@ const TableComponent = ({ data, title, columns }) => {
                     {d.Idendity_Proof.document_type}
                   </td>
                   <td className="text-dark">{d.Contact_Details[0].mobile}</td>
+                  <td className="text-dark">&nbsp;{d?.Created_At}</td>
                   <td className="text-dark">
-                    &nbsp;{d?.Created_At || "25-01-2022"}
-                  </td>
-                  <td className="text-dark">
-                    <button className="btn btn-info">Edit</button>
+                    <button className="btn btn-info">
+                      <Link to={`/?id=${data[i].id}`}>Edit</Link>
+                    </button>
                   </td>
                   <td className="text-dark">
                     <button
                       className="btn btn-danger"
-                      onClick={(e) => handleDeleteUser(e, data[i].id)}
+                      onClick={(e) => handleDeleteUser(data[i].id)}
                     >
                       Delete
                     </button>
@@ -58,6 +75,15 @@ const TableComponent = ({ data, title, columns }) => {
             </td>
           </tbody>
         </table>
+        <div className="Pagination">
+          <Pagination
+            limit={limit}
+            setLimit={setLimit}
+            totalData={data}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
       </div>
     </>
   );

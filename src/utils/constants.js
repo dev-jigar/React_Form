@@ -83,6 +83,4 @@ export const columns = [
   "Verified By",
   "Phone",
   "Created At",
-  "View",
-  "Delete",
 ];

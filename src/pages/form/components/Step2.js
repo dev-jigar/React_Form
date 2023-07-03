@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import FormInputs from "./FormInputs";
 
 const Step2 = (props) => {
   const [formErrors, setFormErrors] = useState({
-    setemailErr: "",
-    setmobileErr: "",
+    setemailErr0: "",
+    setmobileErr0: "",
   });
   const isMounted = useRef(false);
   const { dynamicData, setDynamicData, handleAddMore, setFormData, formData } =
@@ -20,7 +19,7 @@ const Step2 = (props) => {
 
   function isValidEmail(email) {
     let regex = new RegExp(
-      " /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/"
+      "/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/"
     );
     return regex.test(email);
   }
@@ -68,7 +67,7 @@ const Step2 = (props) => {
     dynamicData.map((element, i = 0) => {
       return checkVal(
         !element.email,
-        "setemailErr",
+        `setemailErr${i}`,
         "Please Enter Email",
         !element.email.length > 4,
         "Email should be greater than 4 characters",
@@ -80,7 +79,7 @@ const Step2 = (props) => {
     dynamicData.map((element, i) => {
       return checkVal(
         !element.mobile,
-        "setmobileErr",
+        `setmobileErr${i}`,
         "Please Enter Mobile Number",
         element.mobile.length < 9,
         "Mobile Number should be greater than 9 digit and less than 11 digit",
@@ -88,6 +87,17 @@ const Step2 = (props) => {
         "Mobile valid mobile number"
       );
     });
+  };
+  const count = 1;
+  const addMoreErrorState = (n) => {
+    for (let i = 1; i < n; i++) {
+      const tempFormError = {
+        ...formErrors,
+        [`setemailErr${i}`]: "",
+        [`setmobileErr${i}`]: "",
+      };
+      setFormErrors(tempFormError);
+    }
   };
   useEffect(() => {
     if (isMounted.current) {
@@ -116,6 +126,7 @@ const Step2 = (props) => {
           title="Add Additional Contact"
           onClick={(e) => {
             handleAddMore(e);
+            addMoreErrorState(count);
           }}
         >
           Add More +
@@ -162,6 +173,18 @@ const Step2 = (props) => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div className="errors d-flex justify-content-between text-center mx-5">
+                    <small>
+                      <span className="text-danger">
+                        {formErrors["setemailErr0"]}
+                      </span>
+                    </small>
+                    <small>
+                      <span className="text-danger">
+                        {formErrors["setmobileErr0"]}
+                      </span>
+                    </small>
                   </div>
                 </div>
               );
@@ -214,18 +237,22 @@ const Step2 = (props) => {
                       -
                     </button>
                   </div>
+                  <div className="errors d-flex justify-content-between text-center mx-5">
+                    <small>
+                      <span className="text-danger">
+                        {formErrors[`setemailErr${p}`]}
+                      </span>
+                    </small>
+                    <small>
+                      <span className="text-danger">
+                        {formErrors[`setmobileErr${p}`]}
+                      </span>
+                    </small>
+                  </div>
                 </div>
               );
             }
           })}
-        <div className="errors d-flex justify-content-between text-center mx-5">
-          <small>
-            <span className="text-danger">{formErrors["setemailErr"]}</span>
-          </small>
-          <small>
-            <span className="text-danger">{formErrors["setmobileErr"]}</span>
-          </small>
-        </div>
       </div>
 
       <div className="d-flex justify-content-between">

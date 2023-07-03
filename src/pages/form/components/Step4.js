@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import FormInputs from "./FormInputs";
 import { AddType, Addplace, Country, states } from "../../../utils/constants";
-import { StoreUser } from "../service/form.service";
+import { StoreUser, UpdateUserStore } from "../service/form.service";
 
 const Step4 = (props) => {
   const isMounted = useRef(false);
   const { formData, setFormData, Address, setAddress } = props;
+  console.log("🚀 ~ file: Step4.js:9 ~ Step4 ~ formData:", formData);
   const [formErrors, setFormErrors] = useState({
     setAddTypeErr: "",
     setAddressErr: "",
@@ -66,6 +67,7 @@ const Step4 = (props) => {
       if (!isError) {
         HandleonSubmit({
           ...formData,
+          ...(formData.currentStep === 1),
           Address: { ...Address },
         });
       }
@@ -75,11 +77,27 @@ const Step4 = (props) => {
   }, [formErrors]);
   const HandleonSubmit = (formData) => {
     const today = new Date();
-    StoreUser("BankUser", {
-      ...formData,
-      Address: { ...Address },
-      Created_At: today.toLocaleDateString("en-US"),
-    });
+    if (formData.Edited === true) {
+      UpdateUserStore(
+        "BankUser",
+        {
+          ...formData,
+          Address: { ...Address },
+          Created_At: today.toLocaleDateString("en-US"),
+        },
+        formData.currentStep === 1
+      );
+    } else {
+      StoreUser(
+        "BankUser",
+        {
+          ...formData,
+          Address: { ...Address },
+          Created_At: today.toLocaleDateString("en-US"),
+        },
+        formData.currentStep === 1
+      );
+    }
     // window.location.reload();
   };
 
@@ -333,7 +351,7 @@ const Step4 = (props) => {
           className="btn btn-success w-25 text-light p-2 mt-3 px-2 align-left"
           onClick={(e) => validateErrors()}
         >
-          Submit
+          {formData?.Edited ? <>Update</> : <>Submit</>}
         </button>
       </div>
     </>

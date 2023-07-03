@@ -5,11 +5,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Listing from "./pages/users/Listing";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      {/* <Form /> */}
-      <Listing />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Form />} />
+          <Route path="/table" element={<Listing />} />
+        </Routes>
+      </BrowserRouter>
+
+      {/* <Listing /> */}
       <ToastContainer />
     </div>
   );

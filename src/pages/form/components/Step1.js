@@ -31,7 +31,7 @@ const Step1 = (props) => {
         }
       : {
           fullName: "",
-          dob: "",
+          dob: "", //2003-07-16
           gender: "",
           maritailStatus: "",
           nationality: "",
