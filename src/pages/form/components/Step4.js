@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import FormInputs from "./FormInputs";
 import { AddType, Addplace, Country, states } from "../../../utils/constants";
 import { StoreUser, UpdateUserStore } from "../service/form.service";
+import { useDispatch } from "react-redux";
 
 const Step4 = (props) => {
   const isMounted = useRef(false);
   const { formData, setFormData, Address, setAddress } = props;
-  console.log("🚀 ~ file: Step4.js:9 ~ Step4 ~ formData:", formData);
+  const dispatch = useDispatch();
   const [formErrors, setFormErrors] = useState({
     setAddTypeErr: "",
     setAddressErr: "",
@@ -75,9 +76,21 @@ const Step4 = (props) => {
       isMounted.current = true;
     }
   }, [formErrors]);
+
   const HandleonSubmit = (formData) => {
     const today = new Date();
     if (formData.Edited === true) {
+      dispatch({
+        type: "UPDATE_DATA",
+        payload: {
+          id: formData.id,
+          data: {
+            ...formData,
+            Address: { ...Address },
+            Created_At: today.toLocaleDateString("en-US"),
+          },
+        },
+      });
       UpdateUserStore(
         "BankUser",
         {
@@ -88,6 +101,14 @@ const Step4 = (props) => {
         formData.currentStep === 1
       );
     } else {
+      dispatch({
+        type: "ADD_DATA",
+        payload: {
+          ...formData,
+          Address: { ...Address },
+          Created_At: today.toLocaleDateString("en-US"),
+        },
+      });
       StoreUser(
         "BankUser",
         {

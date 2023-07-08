@@ -7,9 +7,9 @@ const Search = ({
   currentPage,
   setCurrentPage,
   setIsSeaching,
+  search,
+  setSearch,
 }) => {
-  const [search, setSearch] = useState("");
-
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };

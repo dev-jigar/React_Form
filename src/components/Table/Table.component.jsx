@@ -17,6 +17,7 @@ const TableComponent = ({ data, title, columns, setData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(3);
   const [isSeaching, setIsSeaching] = useState(false);
+  const [search, setSearch] = useState("");
 
   //handle delete functionality
   const handleDeleteUser = (id) => {
@@ -234,6 +235,8 @@ const TableComponent = ({ data, title, columns, setData }) => {
                     setCurrentPage={setCurrentPage}
                     limit={limit}
                     setIsSeaching={setIsSeaching}
+                    search={search}
+                    setSearch={setSearch}
                   />
                 </td>
               </tr>
@@ -350,13 +353,14 @@ const TableComponent = ({ data, title, columns, setData }) => {
       {/* pagination */}
       <div className="Pagination">
         <Pagination
-          totalData={filtered.length > 0 ? filtered.length : data.length}
+          totalData={search !== "" ? filtered.length : data.length}
           limit={limit}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
           setsearchedRecord={setsearchedRecord}
           searchedRecord={searchedRecord}
           isSeaching={isSeaching}
+          search={search}
         />
       </div>
     </>

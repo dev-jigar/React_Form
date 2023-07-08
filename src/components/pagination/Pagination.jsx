@@ -5,6 +5,7 @@ const Pagination = ({
   currentPage,
   searchedRecord,
   isSeaching,
+  search,
 }) => {
   const pageNumber = [];
   for (let i = 1; i <= Math.ceil(totalData / limit); i++) {
@@ -30,11 +31,11 @@ const Pagination = ({
       ) : (
         <>
           <div>
-            {isSeaching === false && (
+            {
               <p style={{ fontSize: "25px", fontWeight: 800 }}>
                 No records found !
               </p>
-            )}
+            }
           </div>
         </>
       )}
