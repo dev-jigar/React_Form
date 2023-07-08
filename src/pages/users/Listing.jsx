@@ -5,7 +5,6 @@ import { columns } from "../../utils/constants";
 
 const Listing = () => {
   const [userDta, setUserDta] = useState(getUserData());
-  console.log("🚀 ~ file: Listing.jsx:8 ~ Listing ~ userDta:", userDta);
   return (
     <div>
       <TableComponent

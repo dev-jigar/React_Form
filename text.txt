@@ -42,3 +42,19 @@ Bank account application form
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[{"id":"OVrJY2bRCz","currentStep":4,"personalDetails":{"fullName":"abc","dob":"1989-08-06","gender":"Female","maritailStatus":"Unmarried","nationality":"","aIncome":"54675464","occupation":"Business","subjectDisable":"No","Category":"OBC","EduQulification":"Graduate(Gen)","Pan":"6745643","AccountType":"Normal"},"Contact_Details":{"0":{"id":"2lDK4xzMHT","email":"nana1@gmail.com","mobile":"54657878621"}},"Idendity_Proof":{"document_type":"Passport","document_no":"234234234","doc_image":"C:\\fakepath\\category-icon.png","doc_issue_date":"2022-11-11","doc_exipiry_date":"2023-06-16"},"Address":{"addType":"Registered Office","address":"abc","district":"abc","zip_Code":"23234234","address_location":"Permanent","Country":"india","State":"Goa","City_Village":"adc"},"Created_At":"7/6/2023"},{"id":"yLzT1vcK9b","currentStep":4,"personalDetails":{"fullName":"what","dob":"2009-09-27","gender":"Female","maritailStatus":"Single","nationality":"","aIncome":"4534535345","occupation":"Service","subjectDisable":"No","Category":"OBC","EduQulification":"12th passed","Pan":"5465465456","AccountType":"Normal"},"Contact_Details":{"0":{"id":"gxMc9zICYJ","email":"dhruv@gmail.com","mobile":"4534534534"},"1":{"id":"qe4jSYfR8U","email":"jigar.joshi011@gmail.com","mobile":"80654544787"}},"Idendity_Proof":{"document_type":"Addhar Card","document_no":"234234234","doc_image":"C:\\fakepath\\category-icon.png","doc_issue_date":"2022-11-11","doc_exipiry_date":"2023-06-16"},"Address":{"addType":"Residential","address":"adfg","district":"sdf","zip_Code":"474556","address_location":"Current","Country":"india","State":"Arunachal Pradesh","City_Village":"fgadc"},"Created_At":"7/6/2023"},{"id":"pQjGuZG8fd","currentStep":4,"personalDetails":{"fullName":"jigar","dob":"1999-10-29","gender":"Male","maritailStatus":"Single","nationality":"","aIncome":"8346788","occupation":"Service","subjectDisable":"No","Category":"SC","EduQulification":"Graduate(Gen)","Pan":"3644758","AccountType":"Minor"},"Contact_Details":{"0":{"id":"4YSTlTCrxE","email":"admin@gmail.com","mobile":"2342342332"},"1":{"id":"7eMQBOMM1I","email":"jigar.joshi011@gmail.com","mobile":"80654544787"}},"Idendity_Proof":{"document_type":"Addhar Card","document_no":"47564345","doc_image":"C:\\fakepath\\category-icon.png","doc_issue_date":"2022-11-11","doc_exipiry_date":"2023-06-16"},"Address":{"addType":"Registered Office","address":"abcF","district":"abcF","zip_Code":"345345","address_location":"Permanent","Country":"india","State":"Karnataka","City_Village":"5345"},"Created_At":"7/6/2023"}]

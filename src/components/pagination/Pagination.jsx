@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-
-const Pagination = ({ limit, totalData, paginate, setLimit, currentPage }) => {
-  console.log(
-    "🚀 ~ file: Pagination.jsx:4 ~ Pagination ~ limit, totalData, paginate, setLimit, currentPage:",
-    // limit
-    // totalData
-    // paginate
-
-    currentPage
-  );
+const Pagination = ({
+  limit,
+  totalData,
+  setCurrentPage,
+  currentPage,
+  searchedRecord,
+  isSeaching,
+}) => {
   const pageNumber = [];
-  for (let i = 0; i < Math.ceil(totalData / limit); i++) {
+  for (let i = 1; i <= Math.ceil(totalData / limit); i++) {
     pageNumber.push(i);
   }
-
   return (
     <div className="Pagination p-3">
-      <select
-        name="recordPerPage"
-        value={limit}
-        onChange={(e) => setLimit(e.target.value)}
-        className="p-3"
-        style={{ fontSize: "25px" }}
-      >
-        <option value={2}>2</option>
-        <option value={4}>4</option>
-        <option value={6}>6</option>
-      </select>
-      {pageNumber.map((number) => (
+      {pageNumber.length > 0 ? (
+        pageNumber.map((curr, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(curr)}
+              className={
+                curr === currentPage ? "mx-1 btn btn-primary" : "mx-1 btn"
+              }
+            >
+              {" "}
+              {curr}
+            </button>
+          );
+        })
+      ) : (
         <>
-          <button
-            className={currentPage === number ? "active" : ""}
-            key={number}
-            onClick={() => paginate(number)}
-          >
-            {number}
-          </button>
+          <div>
+            {isSeaching === false && (
+              <p style={{ fontSize: "25px", fontWeight: 800 }}>
+                No records found !
+              </p>
+            )}
+          </div>
         </>
-      ))}
+      )}
     </div>
   );
 };

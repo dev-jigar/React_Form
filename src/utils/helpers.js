@@ -13,13 +13,14 @@
 import { toast } from "react-toastify";
 
 export const setLocalStoreage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
+  return localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const getLocalStorage = (name) => {
   return localStorage.getItem(name);
 };
 export const succesToast = (message) => toast.success(message);
+export const errorToast = (message) => toast.error(message);
 export const makeRandomId = (length) => {
   let result = "";
   const characters =

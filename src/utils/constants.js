@@ -82,5 +82,5 @@ export const columns = [
   "Pan",
   "Verified By",
   "Phone",
-  "Created At",
+  "gender",
 ];
