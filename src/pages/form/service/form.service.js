@@ -18,18 +18,8 @@ export const UpdateUserStore = (key, values) => {
 
   const index = editData.findIndex((item) => item.id === values.id);
 
-  if (index !== -1) {
-    editData.splice(index, 1);
-    setLocalStoreage(key, editData);
-    console.log("done removal");
-  }
+  editData[index] = values;
 
-  if (getLocalStorage(key)) {
-    var oldUser = JSON.parse(getLocalStorage(key));
-  } else {
-    oldUser = [];
-  }
-
-  setLocalStoreage(key, [...oldUser, values]);
+  setLocalStoreage(key, editData);
   succesToast("User Updated Successfully!");
 };

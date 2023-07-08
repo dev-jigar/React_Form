@@ -8,14 +8,17 @@ import {
 } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 import Pagination from "../pagination/Pagination";
+import { useDispatch } from "react-redux";
+import { deleteData } from "../../redux/actions/TableAction";
 const TableComponent = ({ data, title, columns, setData }) => {
   //states
+  const dispatch = useDispatch();
+  const limit = 3;
   const [tabledata, setTableData] = useState(data);
   const [filtered, setFiltered] = useState([]);
   const [searchedRecord, setsearchedRecord] = useState([]);
   const [sort, setSort] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(3);
   const [isSeaching, setIsSeaching] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -25,8 +28,9 @@ const TableComponent = ({ data, title, columns, setData }) => {
     if (index !== -1) {
       data.splice(index, 1);
       setLocalStoreage("BankUser", data);
-      const updatedData = getLocalStorage("BankUser");
-      setData(JSON.parse(updatedData));
+      const updatedData = JSON.parse(getLocalStorage("BankUser"));
+      dispatch(deleteData(updatedData));
+      setData(updatedData);
     }
   };
 

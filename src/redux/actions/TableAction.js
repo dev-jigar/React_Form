@@ -1,19 +1,31 @@
-const addData = () => {
+const addData = (data) => {
   return {
     type: "ADD_DATA",
+    payload: {
+      data: {
+        ...data,
+      },
+    },
   };
 };
 
-const updateData = () => {
-  console.log("called");
+const updateData = (data) => {
   return {
     type: "UPDATE_DATA",
+    payload: {
+      data: {
+        ...data,
+      },
+    },
   };
 };
 
-const deleteData = () => {
+const deleteData = (data) => {
   return {
     type: "DELETE_DATA",
+    payload: {
+      data: data,
+    },
   };
 };
 
